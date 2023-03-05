@@ -1,14 +1,12 @@
 #!/usr/bin/env node
 
-import * as dotenv from "dotenv";
-dotenv.config();
-
 import { program } from "commander";
-import requestCommitMessagesFromOpenAi from "./openAiClient.js";
+import { requestCommitMessagesFromOpenAi } from "./openAiClient.js";
 import fetchGitDiff from "./fetchGitDiff.js";
 import { oraPromise } from "ora";
+import { getOrRequestOpenAiApiKey } from "./config.js";
 
-// console.log({ argv: process.argv });
+const openAiApiKey = await getOrRequestOpenAiApiKey();
 
 program
   .name("CommitGPT")
@@ -22,14 +20,12 @@ const diff = await oraPromise(fetchGitDiff(), {
   successText: "🗒 Fetched Git diff",
 });
 
-const res = await oraPromise(requestCommitMessagesFromOpenAi(diff), {
-  text: "🧠 The AI overlords are thinking...",
-  successText: "💡 The AI overlords have answered",
-});
+const res = await oraPromise(
+  requestCommitMessagesFromOpenAi(openAiApiKey, diff),
+  {
+    text: "🧠 The AI overlords are thinking...",
+    successText: "💡 The AI overlords have answered",
+  }
+);
 
 console.log(res);
-
-// clear();
-// console.log(
-//   chalk.red(figlet.textSync("CommitGPT", { horizontalLayout: "full" }))
-// );

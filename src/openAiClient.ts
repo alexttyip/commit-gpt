@@ -12,7 +12,30 @@ You should summarise what the changes achieved in the git commit message.
 The following is the git diff of the changes I made:
 `;
 
-const requestCommitMessagesFromOpenAi = async (
+export const validateOpenAiApiKey = async (
+  openAiApiKey: string
+): Promise<boolean> => {
+  if (!openAiApiKey) {
+    return false;
+  }
+
+  try {
+    const configuration = new Configuration({
+      apiKey: openAiApiKey,
+    });
+
+    const openai = new OpenAIApi(configuration);
+
+    await openai.listModels();
+
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+export const requestCommitMessagesFromOpenAi = async (
+  openAiApiKey: string,
   gitDiff: string
 ): Promise<string[]> => {
   if (!gitDiff) {
@@ -20,7 +43,7 @@ const requestCommitMessagesFromOpenAi = async (
   }
 
   const configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY,
+    apiKey: openAiApiKey,
   });
 
   const openai = new OpenAIApi(configuration);
@@ -44,5 +67,3 @@ const requestCommitMessagesFromOpenAi = async (
     .map(({ message }) => message?.content)
     .filter((content): content is string => Boolean(content));
 };
-
-export default requestCommitMessagesFromOpenAi;

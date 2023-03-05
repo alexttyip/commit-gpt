@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/alexttyip/commit-gpt#readme",
   "devDependencies": {
+    "@types/inquirer": "^9.0.3",
     "@types/node": "^18.14.6",
     "@typescript-eslint/eslint-plugin": "^5.54.0",
     "@typescript-eslint/parser": "^5.54.0",
@@ -40,7 +41,8 @@
   },
   "dependencies": {
     "commander": "^10.0.0",
-    "dotenv": "^16.0.3",
+    "conf": "^11.0.1",
+    "inquirer": "^9.1.4",
     "openai": "^3.2.1",
     "ora": "^6.1.2"
   }
