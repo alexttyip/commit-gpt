@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
+    "lint": "eslint --fix"
   },
+  "files": ["lib/**/*"],
   "repository": {
     "type": "git",
     "url": "https://github.com/alexttyip/commit-gpt.git"
@@ -14,5 +17,14 @@
   "bugs": {
     "url": "https://github.com/alexttyip/commit-gpt/issues"
   },
-  "homepage": "https://github.com/alexttyip/commit-gpt#readme"
+  "homepage": "https://github.com/alexttyip/commit-gpt#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.54.0",
+    "@typescript-eslint/parser": "^5.54.0",
+    "eslint": "^8.35.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.4",
+    "typescript": "^4.9.5"
+  }
 }
