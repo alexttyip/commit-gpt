@@ -1,8 +1,9 @@
 {
   "name": "@alexttyip/commit-gpt",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "type": "module",
+  "main": "lib/index.js",
   "bin": {
     "commitGpt": "./lib/index.js"
   },
