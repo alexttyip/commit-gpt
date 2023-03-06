@@ -1,6 +1,6 @@
 {
   "name": "@alexttyip/commit-gpt",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "type": "module",
   "main": "lib/index.js",
@@ -13,7 +13,8 @@
     "dev": "nodemon -e ts --watch src  --exec 'npm run build'",
     "start": "lib/index.js",
     "local": "npm run build && npm i -g && commitGpt",
-    "lint": "eslint --fix"
+    "lint": "eslint --fix",
+    "prepublishOnly": "npm run build"
   },
   "files": [
     "lib/**/*"
