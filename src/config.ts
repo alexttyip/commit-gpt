@@ -1,6 +1,7 @@
 import Conf from "conf";
 import inquirer from "inquirer";
 import { validateOpenAiApiKey } from "./openAiClient.js";
+import isString from "./isString.js";
 
 export const confSchema = {
   OPENAI_API_KEY: {
@@ -9,9 +10,6 @@ export const confSchema = {
 };
 
 const OPENAI_API_KEY_CONFIG_KEY = "OPENAI_API_KEY";
-
-const isString = (apiKey: unknown): apiKey is string =>
-  typeof apiKey === "string";
 
 export const getOrRequestOpenAiApiKey = async (): Promise<string> => {
   const config = new Conf({ projectName: "commit-gpt", schema: confSchema });
