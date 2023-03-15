@@ -7,7 +7,7 @@ const fetchGitDiff = async (
   excludePatterns = ["./package-lock.json"]
 ): Promise<string> => {
   const excludePatternsString = excludePatterns
-    .map((pattern) => `':!${pattern}'`)
+    .map((pattern) => `":!${pattern}"`)
     .join(" ");
 
   const { stdout } = await promisifiedExec(
